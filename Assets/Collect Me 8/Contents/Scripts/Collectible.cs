@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System.Collections;
+using Deckbuilder;
 
 namespace C8 {
 
@@ -106,6 +107,8 @@ public class Collectible : MonoBehaviour {
 	{
 		if (bCollected)
 			return;
+
+			FloatingTextManager.Instance.SpawnText(transform.position, 100, FloatingTextType.Heal);
 
 		if (PlayParticles && PickupEffect != null) 
 		{

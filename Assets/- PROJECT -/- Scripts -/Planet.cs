@@ -36,7 +36,9 @@ public class Planet : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             _drag = Input.mousePosition - _previousPos;
-            cameraPivot.Rotate(new Vector3(-_drag.y, _drag.x, 0) * dragSpeed, Space.Self);
+            Vector3 rotationAmount = new Vector3(-_drag.y, _drag.x, 0) * dragSpeed;
+            cameraPivot.Rotate(rotationAmount, Space.Self);
+            //cameraPivot.rotation = Quaternion.Slerp(cameraPivot.rotation, Quaternion.LookRotation(cameraPivot.eulerAngles + rotationAmount, cameraPivot.transform.up), 20 * Time.deltaTime);
             _previousPos = Input.mousePosition;
         }
     }

@@ -1,3 +1,4 @@
+using MyBox.EditorTools;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ public class Digger : MonoBehaviour
     [SerializeField] private float shrinkRadius;
     [SerializeField] private float closestToPlanet;
     [SerializeField] private LayerMask chunkLayer;
+    [SerializeField] private float timeBeforeDrag;
 
     private Vector3 _center;
     private RaycastHit _raycastHit;
@@ -36,7 +38,17 @@ public class Digger : MonoBehaviour
                 _colliders = Physics.OverlapSphere(_raycastHit.point, shrinkRadius + 1).ToList();
                 foreach (Collider  collider in _colliders)
                 {
-                    _detectedChunks.Add(collider.GetComponent<Chunk>());
+                    Chunk chnk = collider.GetComponent<Chunk>();
+                    if (chnk != null)
+                    {
+                        _detectedChunks.Add(chnk);
+                    }
+
+                    NatureObject obj = collider.GetComponent<NatureObject>();
+                    if (obj != null)
+                    {
+                        obj.DestroyObject();
+                    }
                 }
             }
 

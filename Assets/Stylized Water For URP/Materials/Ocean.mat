@@ -131,5 +131,5 @@ Material:
     - _WaterColorUnderwater: {r: 0, g: 0.3375001, b: 1, a: 1}
     - _WaveColor: {r: 0, g: 0, b: 0, a: 0}
     - _WaveDirections: {r: 0, g: 0.64, b: 1, a: 0.33}
-    - _WaveVisuals: {r: 0.122, g: 7.9, b: 1.38, a: 0}
+    - _WaveVisuals: {r: 0.122, g: 0.1, b: 1.38, a: 0}
   m_BuildTextureStacks: []

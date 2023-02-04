@@ -1,3 +1,4 @@
+using Deckbuilder;
 using DG.Tweening;
 using MyBox;
 using System.Collections;
@@ -46,6 +47,12 @@ public class NatureObject : MonoBehaviour
     public void SpawnCollectible()
     {
         Instantiate(collectiblePrefab);
+    }
+
+    public void DestroyObject()
+    {
+        FloatingTextManager.Instance.SpawnText(transform.position, 50, FloatingTextType.Damage);
+        Destroy(gameObject);
     }
 }
 
