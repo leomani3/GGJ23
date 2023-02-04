@@ -14,6 +14,8 @@ public class Digger : MonoBehaviour
     [SerializeField] private LayerMask chunkLayer;
     [SerializeField] private float timeBeforeDrag;
 
+    public bool active;
+
     private Vector3 _center;
     private RaycastHit _raycastHit;
     private Camera _mainCam;
@@ -32,6 +34,9 @@ public class Digger : MonoBehaviour
 
     void Update()
     {
+        if (!active) return;
+
+
         if (Input.GetMouseButton(1))
         {
             _detectedChunks.Clear();

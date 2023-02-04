@@ -1,5 +1,6 @@
 using C8;
 using Cinemachine;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,20 @@ public class Planet : MonoBehaviour
     private Vector3 _drag;
     private Camera _mainCam;
     private RaycastHit _raycastHit;
+    private bool active;
+
+    public bool Active
+    {
+        get { return active; }
+        set 
+        { 
+            active = value;
+            if (active)
+            {
+                transform.DOScale(Vector3.one, 1.5f).SetEase(Ease.OutElastic, 0.5f);
+            }
+        }
+    }
 
     public List<Chunk> Chunks => _chunks;
 
@@ -27,6 +42,11 @@ public class Planet : MonoBehaviour
 
     private void Update()
     {
+        if (!active) return;
+
+
+
+
         if (Input.GetMouseButtonDown(0))
         {
             _previousPos = Input.mousePosition;

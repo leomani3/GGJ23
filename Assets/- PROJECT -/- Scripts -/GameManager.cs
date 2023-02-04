@@ -8,6 +8,10 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] TextMeshProUGUI pointsAmountText;
     [SerializeField] private int startPoints;
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject gamePanel;
+    [SerializeField] private Planet planet;
+    [SerializeField] private Digger digger;
 
     private int _currentPoints;
 
@@ -26,5 +30,18 @@ public class GameManager : Singleton<GameManager>
     private void UpdateUI()
     {
         pointsAmountText.text= _currentPoints.ToString();
+    }
+
+    public void StartGame()
+    {
+        menuPanel.SetActive(false);
+        gamePanel.SetActive(true);
+        planet.Active = true;
+        digger.active = true;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
