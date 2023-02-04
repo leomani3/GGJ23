@@ -109,8 +109,9 @@ public class Collectible : MonoBehaviour {
 			return;
 
 			FloatingTextManager.Instance.SpawnText(transform.position, 100, FloatingTextType.Heal);
+            GameManager.Instance.AddPoints(100);
 
-		if (PlayParticles && PickupEffect != null) 
+            if (PlayParticles && PickupEffect != null) 
 		{
 			PickupEffect.gameObject.SetActive (true);
 			var scaler = PickupEffect.GetComponent<ParticleScaler> ();

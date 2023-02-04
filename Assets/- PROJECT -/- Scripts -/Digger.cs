@@ -1,4 +1,4 @@
-using MyBox.EditorTools;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,6 @@ public class Digger : MonoBehaviour
             if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity, chunkLayer))
             {
                 _colliders = Physics.OverlapSphere(_raycastHit.point, shrinkRadius).ToList();
-                _colliders2 = Physics.OverlapSphere(_raycastHit.point, invigorationRadius).ToList();
                 foreach (Collider  collider in _colliders)
                 {
                     Chunk chnk = collider.GetComponent<Chunk>();
@@ -51,15 +50,6 @@ public class Digger : MonoBehaviour
                     if (obj != null)
                     {
                         obj.DestroyObject();
-                    }
-                }
-
-                foreach (Collider collider in _colliders2)
-                {
-                    NatureObject obj = collider.GetComponent<NatureObject>();
-                    if (obj != null)
-                    {
-                        obj.SetState(NatureState.Alive);
                     }
                 }
             }
@@ -75,6 +65,19 @@ public class Digger : MonoBehaviour
                     if (_distanceToRaycastHitPos < shrinkRadius && _distanceToCenter > closestToPlanet)
                     {
                         vertices[i] = Vector3.Lerp(vertices[i], (_center - vertices[i]) * (_distanceToRaycastHitPos / shrinkRadius), shrinkSpeed * Time.deltaTime);
+
+                        if (Vector3.Distance(chunk.transform.TransformPoint(vertices[i]), _center) < closestToPlanet)
+                        {
+                            _colliders2 = Physics.OverlapSphere(_raycastHit.point, invigorationRadius).ToList();
+                            foreach (Collider collider in _colliders2)
+                            {
+                                NatureObject obj = collider.GetComponent<NatureObject>();
+                                if (obj != null)
+                                {
+                                    obj.SetState(NatureState.Alive);
+                                }
+                            }
+                        }
                     }
                 }
 

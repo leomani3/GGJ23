@@ -58,6 +58,7 @@ public class NatureObject : MonoBehaviour
     public void DestroyObject()
     {
         FloatingTextManager.Instance.SpawnText(transform.position, 50, FloatingTextType.Damage);
+        GameManager.Instance.AddPoints(-50);
         Destroy(gameObject);
     }
 }
