@@ -1185,8 +1185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 1902042209}
-  shrinkSpeed: 2
-  shrinkRadius: 2
+  shrinkSpeed: 0.1
+  shrinkRadius: 3
   closestToPlanet: 48
   chunkLayer:
     serializedVersion: 2
@@ -1409,7 +1409,6 @@ GameObject:
   - component: {fileID: 1472415754}
   - component: {fileID: 1472415753}
   - component: {fileID: 1472415752}
-  - component: {fileID: 1472415751}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -1417,19 +1416,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1472415751
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1472415750}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1472415752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1450,7 +1436,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 108dd12c885511745a10905e4caeac9b, type: 2}
+  - {fileID: 2100000, guid: d337fc5282607644ebb2f3575513265e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2131,6 +2117,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2f0e37b01c941d147869058784e26675, type: 3}
       propertyPath: m_Name
       value: Planet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f0e37b01c941d147869058784e26675, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 940875548418401081, guid: 2f0e37b01c941d147869058784e26675, type: 3}
       propertyPath: m_Layer
