@@ -1,3 +1,4 @@
+using C8;
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ public class Planet : MonoBehaviour
 
     private Vector3 _previousPos;
     private Vector3 _drag;
+    private Camera _mainCam;
+    private RaycastHit _raycastHit;
 
     public List<Chunk> Chunks => _chunks;
 
     private void Awake()
     {
         _chunks = GetComponentsInChildren<Chunk>().ToList();
+        _mainCam = Camera.main;
     }
 
     private void Update()
@@ -26,6 +30,7 @@ public class Planet : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _previousPos = Input.mousePosition;
+            CheckForCollectibles();
         }
 
         if (Input.GetMouseButton(0))
@@ -35,4 +40,17 @@ public class Planet : MonoBehaviour
             _previousPos = Input.mousePosition;
         }
     }
+
+    public void CheckForCollectibles()
+    {
+        if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit))
+        {
+            Collectible collectible = _raycastHit.collider.GetComponent<Collectible>();
+            if (collectible != null)
+            {
+                collectible.Collect();
+            }
+        }
+    }
+
 }
