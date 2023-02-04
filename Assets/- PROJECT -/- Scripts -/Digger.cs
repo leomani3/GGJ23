@@ -25,33 +25,36 @@ public class Digger : MonoBehaviour
 
     void Update()
     {
-        foreach (Chunk raycastedChunk in planet.Chunks)
+        if (Input.GetMouseButton(1))
         {
-            if (raycastedChunk.MeshCollider.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity))
+            foreach (Chunk raycastedChunk in planet.Chunks)
             {
-                _chunks.Add(raycastedChunk);
-                foreach (Chunk neighbor in raycastedChunk.Neighbors)
+                if (raycastedChunk.MeshCollider.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity))
                 {
-                    _chunks.Add(neighbor);
-                }
-
-                foreach (Chunk chunk in _chunks)
-                {
-                    Vector3[] vertices = chunk.MeshFilter.mesh.vertices;
-                    for (int i = 0; i < vertices.Length; i++)
+                    _chunks.Add(raycastedChunk);
+                    foreach (Chunk neighbor in raycastedChunk.Neighbors)
                     {
-                        _vertexWorldPos = chunk.transform.TransformPoint(vertices[i]);
-                        _distanceToRaycastHitPos = Vector3.Distance(_raycastHit.point, _vertexWorldPos);
-                        _distanceToCenter = Vector3.Distance(_vertexWorldPos, _center);
-                        if (_distanceToRaycastHitPos < shrinkRadius && _distanceToCenter > closestToPlanet)
-                        {
-                            vertices[i] = Vector3.Lerp(vertices[i], _center, (shrinkSpeed / (_distanceToRaycastHitPos / shrinkRadius)) * Time.deltaTime);
-                        }
+                        _chunks.Add(neighbor);
                     }
 
-                    chunk.MeshFilter.mesh.vertices = vertices;
-                    chunk.MeshFilter.mesh.RecalculateBounds();
-                    chunk.MeshCollider.sharedMesh = chunk.MeshFilter.sharedMesh;
+                    foreach (Chunk chunk in _chunks)
+                    {
+                        Vector3[] vertices = chunk.MeshFilter.mesh.vertices;
+                        for (int i = 0; i < vertices.Length; i++)
+                        {
+                            _vertexWorldPos = chunk.transform.TransformPoint(vertices[i]);
+                            _distanceToRaycastHitPos = Vector3.Distance(_raycastHit.point, _vertexWorldPos);
+                            _distanceToCenter = Vector3.Distance(_vertexWorldPos, _center);
+                            if (_distanceToRaycastHitPos < shrinkRadius && _distanceToCenter > closestToPlanet)
+                            {
+                                vertices[i] = Vector3.Lerp(vertices[i], (_center - vertices[i]) * (_distanceToRaycastHitPos / shrinkRadius), shrinkSpeed * Time.deltaTime);
+                            }
+                        }
+
+                        chunk.MeshFilter.mesh.vertices = vertices;
+                        chunk.MeshFilter.mesh.RecalculateBounds();
+                        chunk.MeshCollider.sharedMesh = chunk.MeshFilter.sharedMesh;
+                    }
                 }
             }
         }

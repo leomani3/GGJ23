@@ -20,15 +20,12 @@ public class Chunk : MonoBehaviour
         _meshFilter= GetComponent<MeshFilter>();
     }
 
-    public Vector3[] GetChunkAndNeighborsVertices()
+    private void OnTriggerEnter(Collider other)
     {
-        List<Vector3> res = _meshFilter.mesh.vertices.ToList();
-
-        foreach (Chunk neighbor in neighbors)
+        Chunk chunk = other.GetComponent<Chunk>();
+        if (chunk != null)
         {
-            res.Concat(neighbor.MeshFilter.mesh.vertices);
+           neighbors.Add(chunk);
         }
-
-        return res.ToArray();
     }
 }
