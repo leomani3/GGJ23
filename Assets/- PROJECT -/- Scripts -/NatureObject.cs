@@ -15,6 +15,8 @@ public class NatureObject : MonoBehaviour
 
     public void SetState(NatureState newState)
     {
+        if (newState == currentState) return;
+
         switch (newState)
         {
             case NatureState.Dead:
@@ -28,10 +30,14 @@ public class NatureObject : MonoBehaviour
         currentState = newState;
     }
 
-    [ButtonMethod]
-    public void test()
+    private void OnDestroy()
     {
-        SetState(NatureState.Alive);
+        CustomClock.onTick -= OnTick;
+    }
+
+    private void OnDisable()
+    {
+        CustomClock.onTick -= OnTick;
     }
 
     public void OnTick()
@@ -46,7 +52,7 @@ public class NatureObject : MonoBehaviour
 
     public void SpawnCollectible()
     {
-        Instantiate(collectiblePrefab);
+        Instantiate(collectiblePrefab, transform.position, Quaternion.identity);
     }
 
     public void DestroyObject()

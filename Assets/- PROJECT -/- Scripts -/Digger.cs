@@ -9,6 +9,7 @@ public class Digger : MonoBehaviour
     [SerializeField] private Planet planet;
     [SerializeField] private float shrinkSpeed = 0.1f;
     [SerializeField] private float shrinkRadius;
+    [SerializeField] private float invigorationRadius;
     [SerializeField] private float closestToPlanet;
     [SerializeField] private LayerMask chunkLayer;
     [SerializeField] private float timeBeforeDrag;
@@ -21,6 +22,7 @@ public class Digger : MonoBehaviour
     private float _distanceToCenter;
     private List<Chunk> _detectedChunks = new List<Chunk>();
     private List<Collider> _colliders = new List<Collider>();
+    private List<Collider> _colliders2 = new List<Collider>();
 
     void Awake()
     {
@@ -35,7 +37,8 @@ public class Digger : MonoBehaviour
             _detectedChunks.Clear();
             if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity, chunkLayer))
             {
-                _colliders = Physics.OverlapSphere(_raycastHit.point, shrinkRadius + 1).ToList();
+                _colliders = Physics.OverlapSphere(_raycastHit.point, shrinkRadius).ToList();
+                _colliders2 = Physics.OverlapSphere(_raycastHit.point, invigorationRadius).ToList();
                 foreach (Collider  collider in _colliders)
                 {
                     Chunk chnk = collider.GetComponent<Chunk>();
@@ -50,9 +53,18 @@ public class Digger : MonoBehaviour
                         obj.DestroyObject();
                     }
                 }
+
+                foreach (Collider collider in _colliders2)
+                {
+                    NatureObject obj = collider.GetComponent<NatureObject>();
+                    if (obj != null)
+                    {
+                        obj.SetState(NatureState.Alive);
+                    }
+                }
             }
 
-            foreach (Chunk chunk in _detectedChunks)
+                foreach (Chunk chunk in _detectedChunks)
             {
                 Vector3[] vertices = chunk.MeshFilter.mesh.vertices;
                 for (int i = 0; i < vertices.Length; i++)

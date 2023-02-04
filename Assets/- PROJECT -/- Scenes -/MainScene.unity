@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068c24dca07b42b4aabe5a121d138b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 1
+  currentState: 0
   punchScalePower: 2
   collectiblePrefab: {fileID: 9044014002904113841, guid: 4482fbe7e3b925e48a4e9fdeb63e276f, type: 3}
   collectibleSpawnProbability: 0.5
@@ -1351,6 +1351,7 @@ MonoBehaviour:
   planet: {fileID: 1902042209}
   shrinkSpeed: 0.1
   shrinkRadius: 3
+  invigorationRadius: 8
   closestToPlanet: 48
   chunkLayer:
     serializedVersion: 2
@@ -3086,7 +3087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068c24dca07b42b4aabe5a121d138b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 1
+  currentState: 0
   punchScalePower: 2
   collectiblePrefab: {fileID: 9044014002904113841, guid: 4482fbe7e3b925e48a4e9fdeb63e276f, type: 3}
   collectibleSpawnProbability: 0.5
