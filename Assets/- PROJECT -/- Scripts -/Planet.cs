@@ -10,6 +10,10 @@ public class Planet : MonoBehaviour
 {
     [SerializeField] private float dragSpeed;
     [SerializeField] private Transform cameraPivot;
+    [SerializeField] private float zoomSpeed;
+    [SerializeField] private float minZoom;
+    [SerializeField] private float maxZoom;
+    [SerializeField] private CinemachineVirtualCamera vCam;
 
     private List<Chunk> _chunks;
 
@@ -44,8 +48,8 @@ public class Planet : MonoBehaviour
     {
         if (!active) return;
 
-
-
+        vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z += Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime;
+        vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = Mathf.Clamp(vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z, -150, -76);
 
         if (Input.GetMouseButtonDown(0))
         {
