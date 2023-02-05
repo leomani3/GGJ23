@@ -199,7 +199,7 @@ public class Digger : MonoBehaviour
                         //colors[i] += Color.red * (1 - (_distanceToRaycastHitPos / invigorationRadius));
                         colors[i] = Color.red;
                     }
-                    if (colors[i] != Color.red && _distanceToRaycastHitPos > invigorationRadius && _distanceToRaycastHitPos < invigorationRadius)
+                    if (colors[i] != Color.red && _distanceToRaycastHitPos > invigorationRadius * .95f && _distanceToRaycastHitPos < invigorationRadius)
                     {
                         colors[i] = Color.blue;
                     }

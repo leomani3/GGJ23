@@ -62,11 +62,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Active: 0
+    - _Active: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadowsOff: 1
-    - _Tile: 0.38
+    - _Tile: 0.14
     - __dummy__: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
