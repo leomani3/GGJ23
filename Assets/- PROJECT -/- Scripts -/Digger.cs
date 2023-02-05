@@ -132,7 +132,7 @@ public class Digger : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            //if (GameManager.Instance.CurrentPoints < energyConsumption * Time.deltaTime) return;
+            if (GameManager.Instance.CurrentPoints < energyConsumption * Time.deltaTime) return;
 
             GameManager.Instance.AddPoints(-energyConsumption * Time.deltaTime);
 
