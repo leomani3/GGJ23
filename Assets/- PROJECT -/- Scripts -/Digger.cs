@@ -80,7 +80,6 @@ public class Digger : MonoBehaviour
                     _colliders2 = Physics.OverlapSphere(startHolePos.position, invigorationRadius).ToList();
                     foreach (Collider collider in _colliders2)
                     {
-                        print(_colliders2.Count);
                         NatureObject obj = collider.GetComponent<NatureObject>();
                         if (obj != null)
                         {

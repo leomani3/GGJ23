@@ -17,6 +17,7 @@ public class NatureObject : MonoBehaviour
     [SerializeField] private Color aliveColorTop;
     [SerializeField] private Color aliveColorBottom;
     [SerializeField] private Color aliveAlbedoTint;
+    [SerializeField] private bool removePointsOnDestroy;
 
     [SerializeField] private float collectibleSpawnProbability;
 
@@ -86,8 +87,12 @@ public class NatureObject : MonoBehaviour
 
     public void DestroyObject()
     {
-        FloatingTextManager.Instance.SpawnText(transform.position, 50, FloatingTextType.Damage);
-        GameManager.Instance.AddPoints(-50);
+        if (removePointsOnDestroy)
+        {
+            FloatingTextManager.Instance.SpawnText(transform.position, 50, FloatingTextType.Damage);
+            GameManager.Instance.AddPoints(-50);
+        }
+
         Destroy(gameObject);
     }
 
