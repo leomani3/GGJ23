@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  punchScalePower: 1
+  punchScalePower: 0.02
   collectiblePrefab: {fileID: 9044014002904113841, guid: 4482fbe7e3b925e48a4e9fdeb63e276f, type: 3}
   grayColorTop: {r: 0.8666667, g: 0.8666667, b: 0.8666667, a: 0}
   grayColorBottom: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 0}
@@ -821,4 +821,5 @@ MonoBehaviour:
   aliveColorTop: {r: 0, g: 0, b: 0, a: 0}
   aliveColorBottom: {r: 0, g: 0, b: 0, a: 0}
   aliveAlbedoTint: {r: 0, g: 0, b: 0, a: 0}
+  removePointsOnDestroy: 0
   collectibleSpawnProbability: 0.25
