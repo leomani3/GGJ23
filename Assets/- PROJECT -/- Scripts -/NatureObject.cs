@@ -15,10 +15,12 @@ public class NatureObject : MonoBehaviour
     [SerializeField] private float collectibleSpawnProbability;
 
     private List<Renderer> _renderers;
+    private Animator _animator;
 
     private void Awake()
     {
         _renderers = GetComponentsInChildren<Renderer>().ToList();
+        _animator = GetComponent<Animator>();
 
         SetState(NatureState.Dead);
     }
@@ -34,6 +36,10 @@ public class NatureObject : MonoBehaviour
                 CustomClock.onTick -= OnTick;
                 break;
             case NatureState.Alive:
+                if (_animator != null)
+                {
+                    _animator.SetTrigger("Idle");
+                }
                 SetSaturation(0);
                 CustomClock.onTick += OnTick;
                 transform.DOPunchScale(new Vector3(Random.Range(0.25f, 1f), Random.Range(0.25f, 1f), Random.Range(0.25f, 1f)) * punchScalePower, 0.5f, 1, 1);
