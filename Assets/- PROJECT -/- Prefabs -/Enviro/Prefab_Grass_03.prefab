@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 5855407247090374387}
   - component: {fileID: 5855407247109063251}
   - component: {fileID: -5666118728122787293}
+  - component: {fileID: -3544462394248273745}
   m_Layer: 0
   m_Name: Prefab_Grass_03
   m_TagString: Untagged
@@ -167,6 +168,19 @@ MonoBehaviour:
   punchScalePower: 2
   collectiblePrefab: {fileID: 9044014002904113841, guid: 4482fbe7e3b925e48a4e9fdeb63e276f, type: 3}
   collectibleSpawnProbability: 0.1
+--- !u!135 &-3544462394248273745
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855407247090666195}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5855407247090666197
 GameObject:
   m_ObjectHideFlags: 0
