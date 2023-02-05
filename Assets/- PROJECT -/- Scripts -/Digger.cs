@@ -144,7 +144,7 @@ public class Digger : MonoBehaviour
             _detectedChunks.Clear();
             if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity, chunkLayer))
             {
-                _colliders = Physics.OverlapSphere(_raycastHit.point, shrinkRadius).ToList();
+                _colliders = Physics.OverlapSphere(_raycastHit.point, invigorationRadius).ToList();
                 foreach (Collider collider in _colliders)
                 {
                     Chunk chnk = collider.GetComponent<Chunk>();
@@ -154,7 +154,7 @@ public class Digger : MonoBehaviour
                     }
 
                     NatureObject obj = collider.GetComponent<NatureObject>();
-                    if (obj != null)
+                    if (obj != null && Vector3.Distance(obj.transform.position, _raycastHit.point) < shrinkRadius)
                     {
                         obj.DestroyObject();
                     }
@@ -194,7 +194,7 @@ public class Digger : MonoBehaviour
                     _vertexWorldPos = chunk.transform.TransformPoint(vertices[i]);
                     _distanceToRaycastHitPos = Vector3.Distance(_raycastHit.point, _vertexWorldPos);
                     _distanceToCenter = Vector3.Distance(_vertexWorldPos, _center);
-                    if (_distanceToRaycastHitPos < invigorationRadius * .8f)
+                    if (_distanceToRaycastHitPos < invigorationRadius * .95f)
                     {
                         //colors[i] += Color.red * (1 - (_distanceToRaycastHitPos / invigorationRadius));
                         colors[i] = Color.red;

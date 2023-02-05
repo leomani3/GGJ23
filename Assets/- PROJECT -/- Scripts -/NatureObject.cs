@@ -14,6 +14,9 @@ public class NatureObject : MonoBehaviour
     [SerializeField] private Color grayColorTop;
     [SerializeField] private Color grayColorBottom;
     [SerializeField] private Color grayAlbedoTint;
+    [SerializeField] private Color aliveColorTop;
+    [SerializeField] private Color aliveColorBottom;
+    [SerializeField] private Color aliveAlbedoTint;
 
     [SerializeField] private float collectibleSpawnProbability;
 
@@ -95,9 +98,9 @@ public class NatureObject : MonoBehaviour
             foreach (Material material in renderer.materials)
             {
                 material.DOFloat(value, "_HSV_S", 0.25f);
-                material.DOColor(grayColorTop, "_ColorTop", 0.25f);
-                material.DOColor(grayColorBottom, "_ColorBottom", 0.25f);
-                material.DOColor(grayAlbedoTint, "_AlbedoTint", 0.25f);
+                material.DOColor(Color.Lerp(grayColorTop, aliveColorTop, value + 1), "_ColorTop", 0.25f);
+                material.DOColor(Color.Lerp(grayColorBottom, aliveColorBottom, value + 1), "_ColorBottom", 0.25f);
+                material.DOColor(Color.Lerp(grayAlbedoTint, aliveAlbedoTint, value + 1), "_AlbedoTint", 0.25f);
             }
         }
     }

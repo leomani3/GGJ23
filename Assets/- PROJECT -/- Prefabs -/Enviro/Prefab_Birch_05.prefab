@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 1717180528389635160}
   - component: {fileID: -5314556938164048809}
   - component: {fileID: -6700950636849823483}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Prefab_Birch_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,12 +344,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  punchScalePower: 0
+  punchScalePower: 0.01
   collectiblePrefab: {fileID: 9044014002904113841, guid: 4482fbe7e3b925e48a4e9fdeb63e276f, type: 3}
   grayColorTop: {r: 0.8666667, g: 0.8666667, b: 0.8666667, a: 0}
   grayColorBottom: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 0}
   grayAlbedoTint: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
-  collectibleSpawnProbability: 0.1
+  aliveColorTop: {r: 0.69411767, g: 0.7254902, b: 0.039215688, a: 0}
+  aliveColorBottom: {r: 0.37254903, g: 0.65882355, b: 0.039215688, a: 0}
+  aliveAlbedoTint: {r: 1, g: 1, b: 1, a: 0}
+  collectibleSpawnProbability: 0.001
 --- !u!135 &-6700950636849823483
 SphereCollider:
   m_ObjectHideFlags: 0
