@@ -14,6 +14,7 @@ public class Planet : MonoBehaviour
     [SerializeField] private float minZoom;
     [SerializeField] private float maxZoom;
     [SerializeField] private CinemachineVirtualCamera vCam;
+    [SerializeField] private LayerMask layerMask;
 
     private List<Chunk> _chunks;
 
@@ -69,7 +70,7 @@ public class Planet : MonoBehaviour
 
     public void CheckForCollectibles()
     {
-        if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit))
+        if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, layerMask))
         {
             Collectible collectible = _raycastHit.collider.GetComponent<Collectible>();
             if (collectible != null)

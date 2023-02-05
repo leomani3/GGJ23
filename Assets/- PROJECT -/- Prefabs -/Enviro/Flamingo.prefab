@@ -821,5 +821,5 @@ MonoBehaviour:
   aliveColorTop: {r: 0, g: 0, b: 0, a: 0}
   aliveColorBottom: {r: 0, g: 0, b: 0, a: 0}
   aliveAlbedoTint: {r: 0, g: 0, b: 0, a: 0}
-  removePointsOnDestroy: 0
-  collectibleSpawnProbability: 0.25
+  removePointsOnDestroy: 1
+  collectibleSpawnProbability: 0.1
