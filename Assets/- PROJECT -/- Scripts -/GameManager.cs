@@ -27,6 +27,7 @@ public class GameManager : Singleton<GameManager>
     public void AddPoints(float points)
     {
         _currentPoints += points;
+        _currentPoints = Mathf.Clamp(_currentPoints, 0, _currentPoints);
         UpdateUI();
     }
 
