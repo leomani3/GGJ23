@@ -16,6 +16,7 @@ public class Digger : MonoBehaviour
     [SerializeField] private float pitchSpeed;
     [SerializeField] private float startHoleSize;
     [SerializeField] private Transform startHolePos;
+    [SerializeField] private float energyConsumption;
 
     public bool active;
 
@@ -135,6 +136,10 @@ public class Digger : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
+            if (GameManager.Instance.CurrentPoints < energyConsumption * Time.deltaTime) return;
+
+            GameManager.Instance.AddPoints(-(energyConsumption * Time.deltaTime));
+
             if (_audioSource.pitch < 1.3f)
                 _audioSource.pitch += pitchSpeed * Time.deltaTime;
 
