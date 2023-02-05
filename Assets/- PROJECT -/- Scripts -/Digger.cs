@@ -13,6 +13,7 @@ public class Digger : MonoBehaviour
     [SerializeField] private float closestToPlanet;
     [SerializeField] private LayerMask chunkLayer;
     [SerializeField] private float timeBeforeDrag;
+    [SerializeField] private float pitchSpeed;
 
     public bool active;
 
@@ -27,6 +28,13 @@ public class Digger : MonoBehaviour
     private List<Collider> _colliders2 = new List<Collider>();
     private Color[] colors;
     private Vector3[] drawPoints;
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.pitch = 0.25f;
+    }
 
 
     void Start()
@@ -49,9 +57,24 @@ public class Digger : MonoBehaviour
     {
         if (!active) return;
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            _audioSource.enabled = true;
+            _audioSource.Play();
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            _audioSource.Stop();
+            _audioSource.enabled = false;
+        }
 
         if (Input.GetMouseButton(1))
         {
+            if (_audioSource.pitch < 1.3f)
+                _audioSource.pitch += pitchSpeed * Time.deltaTime;
+
+
             _detectedChunks.Clear();
             if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity, chunkLayer))
             {
