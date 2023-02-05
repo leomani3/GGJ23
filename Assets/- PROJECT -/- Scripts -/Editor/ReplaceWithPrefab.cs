@@ -4,7 +4,7 @@ using UnityEditor;
 public class ReplaceWithPrefab : EditorWindow
 {
     [SerializeField] private GameObject prefab;
-
+     
     [MenuItem("Tools/Replace With Prefab")]
     static void CreateReplaceWithPrefab()
     {
