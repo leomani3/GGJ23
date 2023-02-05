@@ -55,7 +55,7 @@ public class Digger : MonoBehaviour
             _detectedChunks.Clear();
             if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity, chunkLayer))
             {
-                _colliders = Physics.OverlapSphere(_raycastHit.point, shrinkRadius).ToList();
+                _colliders = Physics.OverlapSphere(_raycastHit.point, invigorationRadius).ToList();
                 foreach (Collider collider in _colliders)
                 {
                     Chunk chnk = collider.GetComponent<Chunk>();
