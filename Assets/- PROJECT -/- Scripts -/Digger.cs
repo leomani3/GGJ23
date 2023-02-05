@@ -96,12 +96,12 @@ public class Digger : MonoBehaviour
                 _vertexWorldPos = chunk.transform.TransformPoint(vertices[i]);
                 _distanceToRaycastHitPos = Vector3.Distance(startHolePos.position, _vertexWorldPos);
                 _distanceToCenter = Vector3.Distance(_vertexWorldPos, _center);
-                if (_distanceToRaycastHitPos < startHoleSize * .95f)
+                if (_distanceToRaycastHitPos < invigorationRadius * .95f)
                 {
                     //colors[i] += Color.red * (1 - (_distanceToRaycastHitPos / invigorationRadius));
                     colors[i] = Color.red;
                 }
-                if (colors[i] != Color.red && _distanceToRaycastHitPos > startHoleSize * 0.95f && _distanceToRaycastHitPos < startHoleSize)
+                if (colors[i] != Color.red && _distanceToRaycastHitPos > invigorationRadius * 0.95f && _distanceToRaycastHitPos < invigorationRadius)
                 {
                     colors[i] = Color.blue;
                 }
