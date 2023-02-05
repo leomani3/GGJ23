@@ -69,7 +69,6 @@ public class NatureObject : MonoBehaviour
 
     public void OnTick()
     {
-        print("tick");
         transform.DOPunchScale(new Vector3(Random.Range(0.25f, 1f), Random.Range(0.25f, 1f), Random.Range(0.25f, 1f)) * punchScalePower / 2, 0.25f, 1, 1);
         if (Random.value < collectibleSpawnProbability)
         {

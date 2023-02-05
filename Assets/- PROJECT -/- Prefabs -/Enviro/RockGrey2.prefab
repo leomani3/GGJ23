@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6770398562452375605}
   - component: {fileID: 6770398562448414241}
   - component: {fileID: 6770398564023006156}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RockGrey2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
