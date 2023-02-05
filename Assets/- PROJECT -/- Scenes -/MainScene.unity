@@ -1051,7 +1051,7 @@ MonoBehaviour:
   timeBeforeDrag: 0
   pitchSpeed: 0.01
   startHoleSize: 8
-  startHolePos: {fileID: 0}
+  startHolePos: {fileID: 1535157538}
   energyConsumption: 100
   active: 0
 --- !u!4 &1227760563
@@ -1612,6 +1612,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1535157538 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2101982285, guid: 0442edb7acd66064896ff4efedb298cd, type: 3}
+  m_PrefabInstance: {fileID: 5158906143627620664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1550722863
 PrefabInstance:
   m_ObjectHideFlags: 0
