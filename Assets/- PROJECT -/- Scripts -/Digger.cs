@@ -77,17 +77,14 @@ public class Digger : MonoBehaviour
                 if (_distanceToRaycastHitPos < startHoleSize)
                 {
                     vertices[i] += (_center - vertices[i]) * 0.1f * (_distanceToRaycastHitPos / startHoleSize);
-
-                    if (Vector3.Distance(chunk.transform.TransformPoint(vertices[i]), _center) < closestToPlanet)
+                    _colliders2 = Physics.OverlapSphere(startHolePos.position, invigorationRadius).ToList();
+                    foreach (Collider collider in _colliders2)
                     {
-                        _colliders2 = Physics.OverlapSphere(_raycastHit.point, invigorationRadius).ToList();
-                        foreach (Collider collider in _colliders2)
+                        print(_colliders2.Count);
+                        NatureObject obj = collider.GetComponent<NatureObject>();
+                        if (obj != null)
                         {
-                            NatureObject obj = collider.GetComponent<NatureObject>();
-                            if (obj != null)
-                            {
-                                obj.SetState(NatureState.Alive);
-                            }
+                            obj.SetState(NatureState.Alive);
                         }
                     }
                 }

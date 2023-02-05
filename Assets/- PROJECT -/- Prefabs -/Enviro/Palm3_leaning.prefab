@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5303762612874470861}
   - component: {fileID: 5271558133820924665}
   - component: {fileID: 5317354345088959708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Palm3_leaning
   m_TagString: Untagged
   m_Icon: {fileID: 0}

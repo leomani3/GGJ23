@@ -10527,7 +10527,7 @@ GameObject:
   - component: {fileID: 9044014002896711643}
   - component: {fileID: 9044014002898616421}
   - component: {fileID: 367401277}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NatureCollectible
   m_TagString: Untagged
   m_Icon: {fileID: 0}

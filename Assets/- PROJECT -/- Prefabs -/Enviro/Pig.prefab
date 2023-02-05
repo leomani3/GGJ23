@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 1424191412030594313}
   - component: {fileID: 1424191412030594314}
   - component: {fileID: 1986886944183655118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pig
   m_TagString: Untagged
   m_Icon: {fileID: 0}

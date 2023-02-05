@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6186687530255834178}
   - component: {fileID: 6082422106964626848}
   - component: {fileID: 6163793896922483805}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Palm3_straight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

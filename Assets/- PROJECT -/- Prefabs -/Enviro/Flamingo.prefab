@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 7384355728931848684}
   - component: {fileID: 7384355728931848687}
   - component: {fileID: 2693958964525812065}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flamingo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
