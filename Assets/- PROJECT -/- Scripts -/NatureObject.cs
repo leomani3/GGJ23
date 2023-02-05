@@ -11,6 +11,9 @@ public class NatureObject : MonoBehaviour
     [SerializeField] NatureState currentState;
     [SerializeField] float punchScalePower;
     [SerializeField] private GameObject collectiblePrefab;
+    [SerializeField] private Color grayColorTop;
+    [SerializeField] private Color grayColorBottom;
+    [SerializeField] private Color grayAlbedoTint;
 
     [SerializeField] private float collectibleSpawnProbability;
 
@@ -92,6 +95,9 @@ public class NatureObject : MonoBehaviour
             foreach (Material material in renderer.materials)
             {
                 material.DOFloat(value, "_HSV_S", 0.25f);
+                material.DOColor(grayColorTop, "_ColorTop", 0.25f);
+                material.DOColor(grayColorBottom, "_ColorBottom", 0.25f);
+                material.DOColor(grayAlbedoTint, "_AlbedoTint", 0.25f);
             }
         }
     }
