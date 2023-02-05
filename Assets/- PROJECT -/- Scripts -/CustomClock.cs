@@ -9,9 +9,13 @@ public class CustomClock : MonoBehaviour
     [SerializeField] private float clockDelay;
 
     private float timeCpt;
+    public bool _active;
 
     private void Update()
     {
+        if (!_active) return;
+
+
         timeCpt += Time.deltaTime;
         if (timeCpt > clockDelay)
         {

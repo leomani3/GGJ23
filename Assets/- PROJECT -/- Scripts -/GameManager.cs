@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private Planet planet;
     [SerializeField] private Digger digger;
+    [SerializeField] private CustomClock customClock;
 
     private float _currentPoints;
 
@@ -38,6 +39,7 @@ public class GameManager : Singleton<GameManager>
     {
         menuPanel.SetActive(false);
         gamePanel.SetActive(true);
+        customClock._active= true;
         planet.Active = true;
         digger.active = true;
     }
