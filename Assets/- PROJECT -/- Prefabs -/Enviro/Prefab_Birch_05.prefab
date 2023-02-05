@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 1717180528372705534}
   - component: {fileID: 1717180528389635160}
   - component: {fileID: -5314556938164048809}
+  - component: {fileID: -6700950636849823483}
   m_Layer: 0
   m_Name: Prefab_Birch_05
   m_TagString: Untagged
@@ -346,3 +347,16 @@ MonoBehaviour:
   punchScalePower: 2
   collectiblePrefab: {fileID: 9044014002904113841, guid: 4482fbe7e3b925e48a4e9fdeb63e276f, type: 3}
   collectibleSpawnProbability: 0.1
+--- !u!135 &-6700950636849823483
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717180528372282590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
