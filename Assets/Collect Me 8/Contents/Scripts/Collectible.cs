@@ -212,7 +212,7 @@ public class Collectible : MonoBehaviour {
 				Dispose ();
 		}
 
-			_rb.AddForce(-transform.up * gravityForce, ForceMode.Acceleration);
+			//_rb.AddForce(-transform.up * gravityForce, ForceMode.Acceleration);
 
     }
 }
