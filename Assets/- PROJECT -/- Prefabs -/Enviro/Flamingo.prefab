@@ -815,4 +815,7 @@ MonoBehaviour:
   currentState: 0
   punchScalePower: 1
   collectiblePrefab: {fileID: 9044014002904113841, guid: 4482fbe7e3b925e48a4e9fdeb63e276f, type: 3}
+  grayColorTop: {r: 0.8666667, g: 0.8666667, b: 0.8666667, a: 0}
+  grayColorBottom: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 0}
+  grayAlbedoTint: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
   collectibleSpawnProbability: 0.25
