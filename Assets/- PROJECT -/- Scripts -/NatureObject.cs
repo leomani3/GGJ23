@@ -3,6 +3,7 @@ using DG.Tweening;
 using MyBox;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NatureObject : MonoBehaviour
@@ -13,6 +14,15 @@ public class NatureObject : MonoBehaviour
 
     [SerializeField] private float collectibleSpawnProbability;
 
+    private List<Renderer> _renderers;
+
+    private void Awake()
+    {
+        _renderers = GetComponentsInChildren<Renderer>().ToList();
+
+        SetState(NatureState.Dead);
+    }
+
     public void SetState(NatureState newState)
     {
         if (newState == currentState) return;
@@ -20,14 +30,22 @@ public class NatureObject : MonoBehaviour
         switch (newState)
         {
             case NatureState.Dead:
+                SetSaturation(-1);
                 CustomClock.onTick -= OnTick;
                 break;
             case NatureState.Alive:
+                SetSaturation(0);
                 CustomClock.onTick += OnTick;
                 transform.DOPunchScale(new Vector3(Random.Range(0.25f, 1f), Random.Range(0.25f, 1f), Random.Range(0.25f, 1f)) * punchScalePower, 0.5f, 1, 1);
                 break;
         }
         currentState = newState;
+    }
+
+    [ButtonMethod]
+    public void test()
+    {
+        SetState(NatureState.Alive);
     }
 
     private void OnDestroy()
@@ -61,10 +79,22 @@ public class NatureObject : MonoBehaviour
         GameManager.Instance.AddPoints(-50);
         Destroy(gameObject);
     }
+
+    public void SetSaturation(float value)
+    {
+        foreach (Renderer renderer in _renderers)
+        {
+            foreach (Material material in renderer.materials)
+            {
+                material.DOFloat(value, "_HSV_S", 0.25f);
+            }
+        }
+    }
 }
 
 public enum NatureState
 {
+    None,
     Dead,
     Alive
 }
