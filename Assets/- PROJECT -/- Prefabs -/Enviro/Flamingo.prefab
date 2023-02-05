@@ -765,7 +765,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7384355728125144286}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!95 &7384355728931848684
 Animator:
   serializedVersion: 5
