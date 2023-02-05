@@ -25,11 +25,24 @@ public class Digger : MonoBehaviour
     private List<Chunk> _detectedChunks = new List<Chunk>();
     private List<Collider> _colliders = new List<Collider>();
     private List<Collider> _colliders2 = new List<Collider>();
+    private Color[] colors;
+    private Vector3[] drawPoints;
 
-    void Awake()
+
+    void Start()
     {
         _mainCam = Camera.main;
         _center = Vector3.zero;
+
+        for (int i = 0; i < planet.Chunks.Count; i++)
+        {
+            colors = new Color[planet.Chunks[i].MeshFilter.mesh.vertices.Length];
+            for (int j = 0; j < colors.Length; j++)
+            {
+                colors[j] = Color.clear;
+            }
+            planet.Chunks[i].MeshFilter.mesh.colors = colors;
+        }
     }
 
     void Update()
@@ -43,7 +56,7 @@ public class Digger : MonoBehaviour
             if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity, chunkLayer))
             {
                 _colliders = Physics.OverlapSphere(_raycastHit.point, shrinkRadius).ToList();
-                foreach (Collider  collider in _colliders)
+                foreach (Collider collider in _colliders)
                 {
                     Chunk chnk = collider.GetComponent<Chunk>();
                     if (chnk != null)
@@ -59,7 +72,7 @@ public class Digger : MonoBehaviour
                 }
             }
 
-                foreach (Chunk chunk in _detectedChunks)
+            foreach (Chunk chunk in _detectedChunks)
             {
                 Vector3[] vertices = chunk.MeshFilter.mesh.vertices;
                 for (int i = 0; i < vertices.Length; i++)
@@ -86,11 +99,39 @@ public class Digger : MonoBehaviour
                     }
                 }
 
+                Color[] colors = chunk.MeshFilter.mesh.colors;
+                for (int i = 0; i < vertices.Length; i++)
+                {
+                    _vertexWorldPos = chunk.transform.TransformPoint(vertices[i]);
+                    _distanceToRaycastHitPos = Vector3.Distance(_raycastHit.point, _vertexWorldPos);
+                    _distanceToCenter = Vector3.Distance(_vertexWorldPos, _center);
+                    if (_distanceToRaycastHitPos < invigorationRadius * .8f)
+                    {
+                        //colors[i] += Color.red * (1 - (_distanceToRaycastHitPos / invigorationRadius));
+                        colors[i] = Color.red;
+                    }
+                    if (colors[i] != Color.red && _distanceToRaycastHitPos > invigorationRadius && _distanceToRaycastHitPos < invigorationRadius)
+                    {
+                        colors[i] = Color.blue;
+                    }
+                }
+
                 chunk.MeshFilter.mesh.vertices = vertices;
+                chunk.MeshFilter.mesh.colors = colors;
                 chunk.MeshFilter.mesh.RecalculateBounds();
                 chunk.MeshFilter.mesh.RecalculateNormals();
                 chunk.MeshCollider.sharedMesh = chunk.MeshFilter.sharedMesh;
             }
         }
+    }
+
+    //private IEnumerator ColorGrowth()
+    //{
+
+    //}
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(_raycastHit.point, invigorationRadius);
     }
 }
