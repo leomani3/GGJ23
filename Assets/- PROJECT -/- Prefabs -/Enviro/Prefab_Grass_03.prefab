@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  punchScalePower: 2
+  punchScalePower: 0
   collectiblePrefab: {fileID: 9044014002904113841, guid: 4482fbe7e3b925e48a4e9fdeb63e276f, type: 3}
   collectibleSpawnProbability: 0.1
 --- !u!135 &-3544462394248273745

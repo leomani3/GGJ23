@@ -7,13 +7,15 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] TextMeshProUGUI pointsAmountText;
-    [SerializeField] private int startPoints;
+    [SerializeField] private float startPoints;
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private Planet planet;
     [SerializeField] private Digger digger;
 
-    private int _currentPoints;
+    private float _currentPoints;
+
+    public float CurrentPoints => _currentPoints;
 
     private void Awake()
     {
@@ -21,7 +23,7 @@ public class GameManager : Singleton<GameManager>
         UpdateUI();
     }
 
-    public void AddPoints(int points)
+    public void AddPoints(float points)
     {
         _currentPoints += points;
         UpdateUI();
@@ -29,7 +31,7 @@ public class GameManager : Singleton<GameManager>
 
     private void UpdateUI()
     {
-        pointsAmountText.text= _currentPoints.ToString();
+        pointsAmountText.text = Mathf.RoundToInt(_currentPoints).ToString();
     }
 
     public void StartGame()

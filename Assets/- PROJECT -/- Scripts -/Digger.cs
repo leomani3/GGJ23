@@ -16,6 +16,7 @@ public class Digger : MonoBehaviour
     [SerializeField] private float pitchSpeed;
     [SerializeField] private float startHoleSize;
     [SerializeField] private Transform startHolePos;
+    [SerializeField] private float energyConsumption;
 
     public bool active;
 
@@ -135,6 +136,10 @@ public class Digger : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
+            //if (GameManager.Instance.CurrentPoints < energyConsumption * Time.deltaTime) return;
+
+            GameManager.Instance.AddPoints(-energyConsumption * Time.deltaTime);
+
             if (_audioSource.pitch < 1.3f)
                 _audioSource.pitch += pitchSpeed * Time.deltaTime;
 
@@ -142,7 +147,7 @@ public class Digger : MonoBehaviour
             _detectedChunks.Clear();
             if (Physics.Raycast(_mainCam.ScreenPointToRay(Input.mousePosition), out _raycastHit, Mathf.Infinity, chunkLayer))
             {
-                _colliders = Physics.OverlapSphere(_raycastHit.point, invigorationRadius).ToList();
+                _colliders = Physics.OverlapSphere(_raycastHit.point, shrinkRadius).ToList();
                 foreach (Collider collider in _colliders)
                 {
                     Chunk chnk = collider.GetComponent<Chunk>();
